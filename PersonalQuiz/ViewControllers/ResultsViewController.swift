@@ -30,7 +30,6 @@ extension ResultsViewController {
         var frequencyOfAnimals: [AnimalType: Int] = [:]
         let animals = answers.map { $0.type }
         
-        
         for animal in animals {
             if let animalTypeCount = frequencyOfAnimals[animal] {
                 frequencyOfAnimals.updateValue(animalTypeCount + 1, forKey: animal)
@@ -38,21 +37,9 @@ extension ResultsViewController {
                 frequencyOfAnimals[animal] = 1
             }
         }
-        
-        
-//        for animal in animals {
-//            frequencyOfAnimals[animal] = (frequencyOfAnimals[animal] ?? 0) + 1
-//        }
-        
-        
+
         let sortedFrequencyOfAnimals = frequencyOfAnimals.sorted { $0.value > $1.value }
         guard let mostFrequencyAnimal = sortedFrequencyOfAnimals.first?.key else { return }
-     
-        // Решение в одну строку:
-//        let mostFrequencyAnimal = Dictionary(grouping: answers) { $0.type }
-//            .sorted { $0.value.count > $1.value.count }
-//            .first?.key
-        
         
         updateUI(with: mostFrequencyAnimal)
     }
